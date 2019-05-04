@@ -1,9 +1,9 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
 
-describe("Object.defineProperty", () => {
+describe('Object.defineProperty', () => {
   // has neither of value, writable, get and set keys, it is treated as a data descriptor.
 
-  it("immutable", () => {
+  it('immutable', () => {
     const descriptor = {
       value: 2,
       writable: true
@@ -24,11 +24,11 @@ describe("Object.defineProperty", () => {
     expect(_descriptor.value).toBe(2);
   });
 
-  it("accessor descriptors/data descriptor, 二选一", () => {
+  it('accessor descriptors/data descriptor, 二选一', () => {
     // has both value or writable and get or set keys, an exception is thrown.
     expect(() => {
-      Object.defineProperty({}, "name", {
-        value: "test",
+      Object.defineProperty({}, 'name', {
+        value: 'test',
         writable: true,
         get() {},
         set() {}
@@ -36,13 +36,13 @@ describe("Object.defineProperty", () => {
     }).toThrow();
   });
 
-  it("enumerable", () => {
+  it('enumerable', () => {
     const o = {};
 
-    const symbolE = Symbol.for("e");
-    const symbolF = Symbol.for("f");
+    const symbolE = Symbol.for('e');
+    const symbolF = Symbol.for('f');
 
-    Object.defineProperty(o, "a", {
+    Object.defineProperty(o, 'a', {
       value: 1,
       enumerable: true
     });
@@ -57,7 +57,7 @@ describe("Object.defineProperty", () => {
       enumerable: false
     });
 
-    expect(Object.keys(o)).toContain("a");
+    expect(Object.keys(o)).toContain('a');
     expect(Object.keys(o)).not.toContain(symbolE);
     expect(Object.keys(o)).not.toContain(symbolF);
 
@@ -65,13 +65,13 @@ describe("Object.defineProperty", () => {
     expect(o.propertyIsEnumerable(symbolF)).toBe(false);
 
     var p = { ...o };
-    expect(p[Symbol.for("e")]).toBe(5);
-    expect(p[Symbol.for("f")]).toBeUndefined();
+    expect(p[Symbol.for('e')]).toBe(5);
+    expect(p[Symbol.for('f')]).toBeUndefined();
   });
 
-  it("configurable", () => {
+  it('configurable', () => {
     var o = {};
-    Object.defineProperty(o, "a", {
+    Object.defineProperty(o, 'a', {
       get() {
         return 1;
       },
@@ -79,31 +79,31 @@ describe("Object.defineProperty", () => {
     });
 
     expect(() => {
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         configurable: true
       });
     }).toThrow();
 
     expect(() => {
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         enumerable: true
       });
     }).toThrow();
 
     expect(() => {
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         writable: true
       });
     }).toThrow();
 
     expect(() => {
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         set() {}
       });
     }).toThrow();
 
     expect(() => {
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         get() {
           return 1;
         }
@@ -111,7 +111,7 @@ describe("Object.defineProperty", () => {
     }).toThrow();
 
     expect(() => {
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         value: 12
       });
     }).toThrow();
@@ -120,71 +120,71 @@ describe("Object.defineProperty", () => {
     expect(o.a).toBe(1);
 
     expect(() => {
-      "use strict";
+      'use strict';
       delete o.a;
       expect(o.a).toBe(1);
     }).toThrow();
   });
 
-  describe("data descriptors", () => {
-    it("basic", () => {
+  describe('data descriptors', () => {
+    it('basic', () => {
       const objA = {};
-      Object.defineProperty(objA, "name", {
-        value: "test"
+      Object.defineProperty(objA, 'name', {
+        value: 'test'
       });
       // value 默认 undefined
       expect(objA.value).toBeUndefined();
 
       const objB = {};
-      Object.defineProperty(objB, "name", {
-        value: "test"
+      Object.defineProperty(objB, 'name', {
+        value: 'test'
       });
 
       // enumerable 默认 false
-      expect(Object.keys(objB)).not.toContain("test");
-      expect(objB.propertyIsEnumerable("name")).toBe(false);
+      expect(Object.keys(objB)).not.toContain('test');
+      expect(objB.propertyIsEnumerable('name')).toBe(false);
 
       // writable 默认 false
-      expect(objB.name).toBe("test");
-      objB.name = "test2";
-      expect(objB.name).toBe("test");
+      expect(objB.name).toBe('test');
+      objB.name = 'test2';
+      expect(objB.name).toBe('test');
 
       // strict 模式报错
       expect(() => {
-        "use strict";
-        objB.name = "test2";
+        'use strict';
+        objB.name = 'test2';
       }).toThrow();
 
       expect(() => {
         // configurable 默认 false
-        Object.defineProperty(objB, "name", {
+        Object.defineProperty(objB, 'name', {
           writable: true
         });
       }).toThrow();
     });
 
-    it("configurable = false and writable = true", () => {
+    it('configurable = false and writable = true', () => {
       const o = {};
 
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         value: 1,
         writable: true,
         configurable: false
       });
 
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         value: 2
       });
 
       expect(o.a).toBe(2);
 
       expect(() => {
-        Object.defineProperty(o, "a", {
+        Object.defineProperty(o, 'a', {
           writable: false
         });
 
         expect(() => {
-          Object.defineProperty(o, "a", {
+          Object.defineProperty(o, 'a', {
             value: 3
           });
         }).toThrow();
@@ -193,24 +193,24 @@ describe("Object.defineProperty", () => {
       }).not.toThrow();
     });
 
-    it("configurable = false and writable = false", () => {
+    it('configurable = false and writable = false', () => {
       const o = {};
 
-      Object.defineProperty(o, "a", {
+      Object.defineProperty(o, 'a', {
         value: 1,
         writable: false,
         configurable: false
       });
 
       expect(() => {
-        Object.defineProperty(o, "a", {
+        Object.defineProperty(o, 'a', {
           value: 2
         });
       }).toThrow();
       expect(o.a).toBe(1);
 
       expect(() => {
-        Object.defineProperty(o, "a", {
+        Object.defineProperty(o, 'a', {
           writable: true
         });
       }).toThrow();
@@ -218,11 +218,11 @@ describe("Object.defineProperty", () => {
       expect(o.a).toBe(1);
     });
 
-    it("non-writable value property is inherited", () => {
+    it('non-writable value property is inherited', () => {
       function myclass() {}
       myclass.prototype.x = 1;
 
-      Object.defineProperty(myclass.prototype, "y", {
+      Object.defineProperty(myclass.prototype, 'y', {
         writable: false,
         value: 1
       });
@@ -237,16 +237,16 @@ describe("Object.defineProperty", () => {
       expect(myclass.prototype.y).toBe(1);
 
       expect(() => {
-        "use strict";
+        'use strict';
         a.y = 2;
       }).toThrow();
     });
   });
 
-  describe("accessor descriptors", () => {
-    it("basic", () => {
+  describe('accessor descriptors', () => {
+    it('basic', () => {
       const objA = {
-        _name: "test"
+        _name: 'test'
       };
 
       const mockGetter = jest.fn(function() {
@@ -257,19 +257,19 @@ describe("Object.defineProperty", () => {
       });
 
       // get, set 默认 undefined
-      Object.defineProperty(objA, "name", {
+      Object.defineProperty(objA, 'name', {
         get: mockGetter,
         set: mockSetter
       });
 
-      expect(objA._name).toBe("test");
-      expect(objA.name).toBe("test");
+      expect(objA._name).toBe('test');
+      expect(objA.name).toBe('test');
       expect(mockGetter).toHaveBeenCalled();
 
-      objA.name = "test2";
-      expect(mockSetter).toHaveBeenCalledWith("test2");
-      expect(objA.name).toBe("test2");
-      expect(objA._name).toBe("test2");
+      objA.name = 'test2';
+      expect(mockSetter).toHaveBeenCalledWith('test2');
+      expect(objA.name).toBe('test2');
+      expect(objA._name).toBe('test2');
     });
   });
 });
