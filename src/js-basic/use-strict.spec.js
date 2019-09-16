@@ -126,7 +126,7 @@ describe('use strict', () => {
     }).toThrow(ReferenceError);
   });
 
-  it('If this is evaluated within strict mode code, then the this value is not coerced to an object. A this value of undefined or null is not converted to the global object and primitive values are not converted to wrapper objects. The this value passed via a function call (including calls made using Function.prototype.apply and Function.prototype.call) do not coerce the passed this value to an object (9.2.1.2, 19.2.3.1, 19.2.3.3).When a delete operator occurs within strict mode code, a SyntaxError is thrown if its UnaryExpression is a direct reference to a variable, function argument, or function name ', () => {
+  it('If this is evaluated within strict mode code, then the this value is not coerced to an object. A this value of undefined or null is not converted to the global object and primitive values are not converted to wrapper objects. The this value passed via a function call (including calls made using Function.prototype.apply and Function.prototype.call) do not coerce the passed this value to an object (9.2.1.2, 19.2.3.1, 19.2.3.3).', () => {
     function test() {
       return this;
     }
@@ -219,21 +219,5 @@ describe('use strict', () => {
 
   it('An implementation may not extend, beyond that defined in this specification, the meanings within strict functions of properties named caller or arguments of function instances', () => {
     // 'use strict';
-
-    var global = this;
-
-    var sillyFunction = function(recursed) {
-      if (!recursed) {
-        return arguments.callee(true);
-      }
-      if (this !== global) {
-        console.log('This is: ' + this);
-      } else {
-        console.log('This is the global');
-      }
-    };
-
-    sillyFunction();
-    sillyFunction(true);
   });
 });
