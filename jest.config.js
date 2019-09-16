@@ -1,8 +1,9 @@
 module.exports = {
-  testEnvironment: "node",
-  roots: ["<rootDir>"],
+  testEnvironment: 'jsdom',
+  roots: ['<rootDir>'],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.[t|j]sx?$': 'babel-jest',
   },
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx"]
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
 };
