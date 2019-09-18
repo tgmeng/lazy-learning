@@ -8,7 +8,7 @@ describe('reduce', () => {
   it('reduceAsync', async () => {
     const a = () => Promise.resolve(1);
     const b = () => Promise.resolve(2);
-    const c = () => new Promise(resolve => setTimeout(() => resolve(3), 100));
+    const c = () => new Promise((resolve) => setTimeout(() => resolve(3), 100));
 
     const result = await reduceAsync([a, b, c], (res, val) => res + val);
 
