@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "bootstrap": "lerna bootstrap --hoist",
     "build": "tsc --build tsconfig.json",
     "jest": "jest",
     "babel:dev": "babel src --watch --source-maps --out-dir build"
@@ -22,6 +23,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.17.0",
     "jest": "^24.9.0",
+    "lerna": "^3.16.4",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
   },
