@@ -5,7 +5,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "tsc --build tsconfig.json",
-    "jest": "jest",
+    "jest": "jest --watch --no-cache",
     "babel:dev": "babel src --watch --source-maps --out-dir build"
   },
   "repository": "https://github.com/tgmeng/lazy-learning.git",
@@ -25,6 +25,6 @@
     "jest": "^24.9.0",
     "lerna": "^3.16.4",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.8.3"
   }
 }
