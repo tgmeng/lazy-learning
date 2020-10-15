@@ -10,12 +10,8 @@ import { memoize } from '../../util';
  * 所以当 n 变大, 会算得很慢.
  */
 export function fibR(n) {
-  if (n === 0) {
-    return 0;
-  }
-
-  if (n === 1) {
-    return 1;
+  if (n <= 1) {
+    return n;
   }
 
   return fibR(n - 1) + fibR(n - 2);

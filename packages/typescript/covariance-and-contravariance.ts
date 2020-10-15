@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 // 协变与逆变
 // https://www.stephanboyer.com/post/132/what-are-covariance-and-contravariance
 
@@ -21,7 +22,7 @@ function testDogRunningSpeed(createDog: (d: Dog) => Dog): number {
   const baseDog: GermanShepherd = {
     sleep() {},
     run() {},
-    fuck() {}
+    fuck() {},
   };
   const start = Date.now();
 
