@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS - is and where</title>
+    <style>
+      /**
+       * Common
+       */
+      .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+      }
+
+      /**
+       * Section: is
+       */
+
+      /**
+       * .parent-1 .parent-1-child-1,
+       * .parent-1 .parent-1-child-2 {
+       *   display: inline-block;
+       *   width: 100px;
+       *   height: 100px;
+       *   background: #f00;
+       * }
+       */
+      .parent-1 :is(.parent-1-child-1, .parent-1-child-2) {
+        background: #f00;
+      }
+
+      /**
+       * Section: where
+       */
+
+      /** Bad */
+      .box-1:not([data-test]) {
+        background: #0f0;
+      }
+
+      /** Goods */
+      .box-2:where(:not([data-test])){
+        background: #0f0;
+      }
+
+      .shared-box {
+        background: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <header>is</header>
+      <div class="parent-1">
+        <div class="box parent-1-child-1"></div>
+        <div class="box parent-1-child-2"></div>
+      </div>
+    </section>
+    <section>
+      <header>where</header>
+      <p>The :where() pseudo-class has the same syntax and functionality as :is(). The only difference between them is that :where() doesn’t increase the overall selector’s specificity.</p>
+      <p>Neither the :where() pseudo-class, nor any of its arguments contribute to the specificity of the selector — its specificity is always zero.</p>
+      <div class="box box-1 shared-box"></div>
+      <div class="box box-2 shared-box"></div>
+    <section>
+  </body>
+</html>

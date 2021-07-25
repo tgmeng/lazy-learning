@@ -1,15 +1,14 @@
 {
   "name": "lazy-learning",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "tsc --build tsconfig.json",
     "jest": "jest --watch --no-cache",
-    "babel:dev": "babel src --watch --source-maps --out-dir build"
+    "dev:css": "browser-sync start --server 'src/css' --files 'src/css'",
+    "dev:test-xpath": "browser-sync start --server 'src/test-xpath' --files 'src/test-xpath'"
   },
   "repository": "https://github.com/tgmeng/lazy-learning.git",
-  "author": "gongshangjie <gongshangjie@youzan.com>",
+  "author": "tgmeng <tgmeng@163.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.6.0",
@@ -27,5 +26,8 @@
     "lerna": "^3.16.4",
     "ts-jest": "^24.1.0",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "browser-sync": "^2.27.4"
   }
 }

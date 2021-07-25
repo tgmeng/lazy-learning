@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test XPath</title>
+  </head>
+  <body>
+    https://www.w3school.com.cn/xpath/xpath_syntax.asp
+    <script type="text/javascript">
+      function loadXMLDoc(dname) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', dname, false);
+        xhttp.send('');
+        return xhttp.responseXML;
+      }
+
+      const xml = loadXMLDoc('/books.xml');
+      const path = '/bookstore/book/title';
+
+      const nodes = xml.evaluate(path, xml, null, XPathResult.ANY_TYPE, null);
+
+      let result = nodes.iterateNext();
+      while (result) {
+        console.log(result);
+        result = nodes.iterateNext();
+      }
+    </script>
+  </body>
+</html>
