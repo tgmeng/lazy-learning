@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --main-bg-color: ; /** 空值允许我们从属性中删除 var() 声明 */
+        /** --main-bg-color: initial; */ /** 无效, 使得 var() 使用 fallback */
+        --fallback-color: red;
+      }
+
+      body {
+        background-color: var(--main-bg-color, var(--fallback-color));
+      }
+    </style>
+  </head>
+  <body></body>
+</html>
