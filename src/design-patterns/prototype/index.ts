@@ -2,63 +2,26 @@ export interface Prototype {
   clone(): Prototype;
 }
 
-export abstract class Shape implements Prototype {
-  x: number;
-  y: number;
+export class ConcretePrototype implements Prototype {
+  id: string;
+  component: ComponentWithBackReference;
 
-  color: string;
-
-  constructor(source?: Shape) {
-    if (source) {
-      this.x = source.x;
-      this.y = source.y;
-      this.color = source.color;
-    }
-  }
-
-  abstract clone(): Prototype;
-}
-
-export class Rectangle extends Shape {
-  width: number;
-  height: number;
-
-  constructor(source?: Rectangle) {
-    super(source);
-    if (source) {
-      this.width = source.width;
-      this.height = source.height;
-    }
+  constructor(id: string) {
+    this.id = id;
+    this.component = new ComponentWithBackReference(this);
   }
 
   clone() {
-    return new Rectangle(this);
+    const cloned = new ConcretePrototype(this.id);
+    cloned.component = new ComponentWithBackReference(this);
+    return cloned;
   }
 }
 
-export class Circle extends Shape {
-  radius: number;
+export class ComponentWithBackReference {
+  proto: Prototype;
 
-  constructor(source?: Circle) {
-    super(source);
-    if (source) {
-      this.radius = source.radius;
-    }
-  }
-
-  clone() {
-    return new Circle(this);
-  }
-}
-
-export class PrototypeRegistry {
-  items = new Map<string, Prototype>();
-
-  addItem(id: string, p: Prototype) {
-    this.items.set(id, p);
-  }
-
-  getById(id: string) {
-    return this.items.get(id)?.clone();
+  constructor(proto: Prototype) {
+    this.proto = proto;
   }
 }
