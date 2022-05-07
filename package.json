@@ -2,7 +2,6 @@
   "name": "lazy-learning",
   "version": "1.0.0",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "jest": "jest --watch --no-cache",
     "dev:css": "browser-sync start --server 'src/css' --files 'src/css'",
     "dev:test-xpath": "browser-sync start --server 'src/test-xpath' --files 'src/test-xpath'"
@@ -23,11 +22,18 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.17.0",
     "jest": "^24.9.0",
-    "lerna": "^3.16.4",
     "ts-jest": "^24.1.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "browser-sync": "^2.27.4"
+    "browser-sync": "^2.27.4",
+    "concat-stream": "^2.0.0",
+    "duplexer2": "^0.1.4",
+    "reflect-metadata": "^0.1.13",
+    "stream-combiner": "^0.2.2",
+    "tar": "^6.1.11",
+    "through2": "^4.0.2",
+    "trumpet": "^1.7.2",
+    "ws": "^8.6.0"
   }
 }
