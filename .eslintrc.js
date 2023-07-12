@@ -10,8 +10,5 @@ module.exports = {
     'prettier/@typescript-eslint',
     'prettier/babel',
   ],
-  plugins: ['@typescript-eslint', 'jest'],
-  env: {
-    'jest/globals': true,
-  },
+  plugins: ['@typescript-eslint'],
 };

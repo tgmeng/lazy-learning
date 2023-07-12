@@ -1,3 +1,9 @@
 {
-  "jestrunner.jestCommand": "npm run jest --"
+  "files.associations": {
+    "*.js": "javascript",
+    "*.pcss": "scss",
+    "*.ts": "typescript",
+    "ostream": "cpp",
+    "iostream": "cpp"
+  }
 }

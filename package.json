@@ -1,29 +1,25 @@
 {
   "name": "lazy-learning",
   "version": "1.0.0",
-  "scripts": {
-    "jest": "jest --watch --no-cache",
-    "dev:css": "browser-sync start --server 'src/css' --files 'src/css'",
-    "dev:test-xpath": "browser-sync start --server 'src/test-xpath' --files 'src/test-xpath'"
-  },
+  "scripts": {},
   "repository": "https://github.com/tgmeng/lazy-learning.git",
   "author": "tgmeng <tgmeng@163.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.6.0",
+    "@babel/generator": "^7.21.1",
+    "@babel/parser": "^7.21.2",
     "@babel/preset-env": "^7.6.0",
-    "@types/jest": "^24.0.18",
+    "@babel/traverse": "^7.21.2",
+    "@babel/types": "^7.21.2",
     "@types/node": "^12.7.5",
     "@typescript-eslint/parser": "^2.27.0",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^24.9.0",
     "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.17.0",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.1.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "vitest": "^0.33.0"
   },
   "dependencies": {
     "browser-sync": "^2.27.4",

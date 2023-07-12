@@ -1,6 +1,7 @@
+import { describe, it, expect, vi } from 'vitest';
 import { PromiseAll } from './index';
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('Promise', () => {
   it('Promise.all resolve', (done) => {
@@ -16,22 +17,25 @@ describe('Promise', () => {
       }, 500);
     });
 
-    const c = a.then(() => new Promise((resolve) => {
-      setTimeout(() => {
-        resolve('c');
-      }, 2000);
-    }));
+    const c = a.then(
+      () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            resolve('c');
+          }, 2000);
+        })
+    );
 
     PromiseAll([c, b]).then((res) => {
       expect(res).toEqual(['c', 'b']);
       done();
     });
 
-    jest.advanceTimersByTime(1100);
-    jest.advanceTimersByTime(2000);
+    vi.advanceTimersByTime(1100);
+    vi.advanceTimersByTime(2000);
 
     process.nextTick(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
   });
 
@@ -48,13 +52,18 @@ describe('Promise', () => {
       }, 500);
     });
 
-    const fn = jest.fn();
+    const fn = vi.fn();
 
-    PromiseAll([a, b]).then(() => fn('resolve'), () => fn('catch')).then(() => {
-      expect(fn).toHaveBeenCalledWith('catch');
-      done();
-    });
+    PromiseAll([a, b])
+      .then(
+        () => fn('resolve'),
+        () => fn('catch')
+      )
+      .then(() => {
+        expect(fn).toHaveBeenCalledWith('catch');
+        done();
+      });
 
-    jest.advanceTimersByTime(600);
+    vi.advanceTimersByTime(600);
   });
 });

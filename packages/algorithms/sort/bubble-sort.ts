@@ -1,6 +1,6 @@
-export function bubbleSort(arr) {
+export function bubbleSort(arr: number[]) {
   for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - i; j++) {
+    for (let j = 0; j < arr.length - 1 - i; j++) {
       if (arr[j] > arr[j + 1]) {
         const temp = arr[j + 1];
         arr[j + 1] = arr[j];
@@ -11,7 +11,7 @@ export function bubbleSort(arr) {
   return arr;
 }
 
-export function bubbleSortP(arr) {
+export function bubbleSortWithFlag(arr: number[]) {
   for (let i = 0; i < arr.length - 1; i++) {
     let swapped = false;
     for (let j = 0; j < arr.length - 1 - i; j++) {

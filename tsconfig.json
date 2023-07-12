@@ -4,9 +4,12 @@
     "module": "commonjs",
     "outDir": "out",
     "sourceMap": true,
+    "strict": true,
     "strictFunctionTypes": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*"],
+  "include": ["packages/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

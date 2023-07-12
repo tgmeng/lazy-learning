@@ -1,3 +1,4 @@
+import { describe, it } from 'vitest';
 import { Singleton, App } from '.';
 import { FileSystem } from './subclass';
 import { Deployer } from './cons';

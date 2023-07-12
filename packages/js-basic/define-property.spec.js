@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest';
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
 
 describe('Object.defineProperty', () => {
@@ -6,7 +7,7 @@ describe('Object.defineProperty', () => {
   it('immutable', () => {
     const descriptor = {
       value: 2,
-      writable: true
+      writable: true,
     };
 
     const obj = {};
@@ -31,7 +32,7 @@ describe('Object.defineProperty', () => {
         value: 'test',
         writable: true,
         get() {},
-        set() {}
+        set() {},
       });
     }).toThrow();
   });
@@ -44,17 +45,17 @@ describe('Object.defineProperty', () => {
 
     Object.defineProperty(o, 'a', {
       value: 1,
-      enumerable: true
+      enumerable: true,
     });
 
     Object.defineProperty(o, symbolE, {
       value: 5,
-      enumerable: true
+      enumerable: true,
     });
 
     Object.defineProperty(o, symbolF, {
       value: 6,
-      enumerable: false
+      enumerable: false,
     });
 
     expect(Object.keys(o)).toContain('a');
@@ -75,30 +76,30 @@ describe('Object.defineProperty', () => {
       get() {
         return 1;
       },
-      configurable: false
+      configurable: false,
     });
 
     expect(() => {
       Object.defineProperty(o, 'a', {
-        configurable: true
+        configurable: true,
       });
     }).toThrow();
 
     expect(() => {
       Object.defineProperty(o, 'a', {
-        enumerable: true
+        enumerable: true,
       });
     }).toThrow();
 
     expect(() => {
       Object.defineProperty(o, 'a', {
-        writable: true
+        writable: true,
       });
     }).toThrow();
 
     expect(() => {
       Object.defineProperty(o, 'a', {
-        set() {}
+        set() {},
       });
     }).toThrow();
 
@@ -106,13 +107,13 @@ describe('Object.defineProperty', () => {
       Object.defineProperty(o, 'a', {
         get() {
           return 1;
-        }
+        },
       });
     }).toThrow();
 
     expect(() => {
       Object.defineProperty(o, 'a', {
-        value: 12
+        value: 12,
       });
     }).toThrow();
 
@@ -130,14 +131,14 @@ describe('Object.defineProperty', () => {
     it('basic', () => {
       const objA = {};
       Object.defineProperty(objA, 'name', {
-        value: 'test'
+        value: 'test',
       });
       // value 默认 undefined
       expect(objA.value).toBeUndefined();
 
       const objB = {};
       Object.defineProperty(objB, 'name', {
-        value: 'test'
+        value: 'test',
       });
 
       // enumerable 默认 false
@@ -158,7 +159,7 @@ describe('Object.defineProperty', () => {
       expect(() => {
         // configurable 默认 false
         Object.defineProperty(objB, 'name', {
-          writable: true
+          writable: true,
         });
       }).toThrow();
     });
@@ -169,23 +170,23 @@ describe('Object.defineProperty', () => {
       Object.defineProperty(o, 'a', {
         value: 1,
         writable: true,
-        configurable: false
+        configurable: false,
       });
 
       Object.defineProperty(o, 'a', {
-        value: 2
+        value: 2,
       });
 
       expect(o.a).toBe(2);
 
       expect(() => {
         Object.defineProperty(o, 'a', {
-          writable: false
+          writable: false,
         });
 
         expect(() => {
           Object.defineProperty(o, 'a', {
-            value: 3
+            value: 3,
           });
         }).toThrow();
 
@@ -199,19 +200,19 @@ describe('Object.defineProperty', () => {
       Object.defineProperty(o, 'a', {
         value: 1,
         writable: false,
-        configurable: false
+        configurable: false,
       });
 
       expect(() => {
         Object.defineProperty(o, 'a', {
-          value: 2
+          value: 2,
         });
       }).toThrow();
       expect(o.a).toBe(1);
 
       expect(() => {
         Object.defineProperty(o, 'a', {
-          writable: true
+          writable: true,
         });
       }).toThrow();
       o.a = 2;
@@ -224,7 +225,7 @@ describe('Object.defineProperty', () => {
 
       Object.defineProperty(myclass.prototype, 'y', {
         writable: false,
-        value: 1
+        value: 1,
       });
 
       const a = new myclass();
@@ -246,20 +247,20 @@ describe('Object.defineProperty', () => {
   describe('accessor descriptors', () => {
     it('basic', () => {
       const objA = {
-        _name: 'test'
+        _name: 'test',
       };
 
-      const mockGetter = jest.fn(function() {
+      const mockGetter = vi.fn(function () {
         return this._name;
       });
-      const mockSetter = jest.fn(function(value) {
+      const mockSetter = vi.fn(function (value) {
         this._name = value;
       });
 
       // get, set 默认 undefined
       Object.defineProperty(objA, 'name', {
         get: mockGetter,
-        set: mockSetter
+        set: mockSetter,
       });
 
       expect(objA._name).toBe('test');

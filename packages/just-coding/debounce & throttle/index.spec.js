@@ -1,24 +1,25 @@
+import { describe, it, expect, vi } from 'vitest';
 import { debounce, throttle } from './';
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('debounce & throttle', () => {
   it('debounce', () => {
-    const a = jest.fn();
+    const a = vi.fn();
     const b = debounce(a, 100);
 
     b(1);
-    jest.advanceTimersByTime(200);
+    vi.advanceTimersByTime(200);
     b();
     b();
     b();
-    jest.advanceTimersByTime(200);
+    vi.advanceTimersByTime(200);
 
     expect(a).toHaveBeenCalledTimes(2);
   });
 
   it('throttle', () => {
-    const a = jest.fn();
+    const a = vi.fn();
     const b = throttle(a, 100);
   });
 });
