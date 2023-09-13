@@ -1,7 +1,9 @@
 {
   "name": "lazy-learning",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "test": "vitest"
+  },
   "repository": "https://github.com/tgmeng/lazy-learning.git",
   "author": "tgmeng <tgmeng@163.com>",
   "license": "MIT",
